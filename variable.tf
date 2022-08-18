@@ -61,13 +61,13 @@ variable "secret_key" {
 variable "builder" {
   description = "Email for the builder of this infrastructure"
   type        = string
-  default     = ""
+  default     = "airizarry@cloudbolt.io"
 }
 
 variable "line_of_business" {
   description = "Line of Business"
   type        = string
-  default     = ""
+  default     = "Sales"
 }
 variable "ado" {
   description = "Compainy name for this project"
