@@ -11,8 +11,8 @@ variable "creat_instance" {
 
 }
 variable "owner" {
-  type    = list(any)
-  default = ["099720109477"]
+  type    = string
+  default = "099720109477"
 }
 
 variable "component-name" {

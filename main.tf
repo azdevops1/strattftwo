@@ -23,12 +23,12 @@ data "aws_ami" "ubuntu_instance_ami" {
   }
 }
 
-data "aws_key_pair" "shi_key" {
-  key_name           = "shi_key"
+data "aws_key_pair" "aicb" {
+  key_name           = "aicb"
   include_public_key = true
   filter {
     name   = "tag:Name"
-    values = ["shi_key"]
+    values = ["aicb"]
   }
 }
 
@@ -40,10 +40,14 @@ resource "aws_instance" "gitlabiac" {
   count           = var.creat_instance ? length(var.name) : 0
   ami             = data.aws_ami.ubuntu_instance_ami.id
   instance_type   = var.gitlabiac_type
-  key_name        = data.aws_key_pair.shi_key.key_name
+  key_name        = data.aws_key_pair.aicb.key_name
   security_groups = [aws_security_group.app_sg.id]
   subnet_id       = aws_subnet.public_subnet[0].id
-  user_data = templatefile("${path.module}/template/bash.sh")
+  user_data = templatefile("${path.module}/template/bash.sh",
+    {
+
+    }
+  )
   root_block_device {
     volume_size = 50
     # GB
