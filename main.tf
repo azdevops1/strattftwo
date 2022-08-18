@@ -43,10 +43,7 @@ resource "aws_instance" "gitlabiac" {
   key_name        = data.aws_key_pair.shi_key.key_name
   security_groups = [aws_security_group.app_sg.id]
   subnet_id       = aws_subnet.public_subnet[0].id
-  user_data = templatefile("${path.module}/template/bash.sh",
-    {
-
-  })
+  user_data = templatefile("${path.module}/template/bash.sh")
   root_block_device {
     volume_size = 50
     # GB
